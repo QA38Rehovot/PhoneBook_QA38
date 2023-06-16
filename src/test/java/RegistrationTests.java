@@ -58,7 +58,14 @@ public class RegistrationTests extends TestBase{
         fillLoginForm(email, password);
         submitRegistration();
     }
-
+    @Test
+    public void registrationNegativeWrongPassword(){
+        int i = (int)(System.currentTimeMillis()/1000)%3600;
+        String email = "abc" + i + "@def.com", password = "Abcdef12345";
+        openLoginForm();
+        fillLoginForm(email, password);
+        submitRegistration();
+    }
 
     @AfterMethod
     public void tearDown(){
