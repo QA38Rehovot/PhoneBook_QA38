@@ -16,7 +16,7 @@ public class ApplicationManager {
         return user;
     }
 
-    @BeforeSuite
+//    @BeforeSuite
     public void init(){
         wd = new ChromeDriver();
         user = new HelperUser(wd);
@@ -24,7 +24,7 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    @AfterSuite
+//    @AfterSuite
     public void tearDown(){
         wd.quit();
     }
