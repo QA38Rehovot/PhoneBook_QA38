@@ -98,4 +98,17 @@ public class LoginTests extends TestBase{
 //
 //    }
 
+
+    @Test
+    public void loginNegativeWrongEmail(){
+        String email = "abcdef.com", password = "$Abcdef12345";
+        app.getUser().openLoginForm();
+        app.getUser().fillLoginForm(email, password);
+        app.getUser().submitLogin();
+//        app.getUser().pause(3000);
+        Assert.assertTrue(app.getUser().isWrongFormatMessage());
+        Assert.assertTrue(app.getUser().isAlertPresent());
+    }
+
+
 }

@@ -25,7 +25,7 @@ public class TestBase {
 //
     @AfterSuite
     public void stop(){
-        app.tearDown();
+//        app.tearDown();
     }
 
 //    public void click(By locator){
