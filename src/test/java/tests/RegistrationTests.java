@@ -1,12 +1,15 @@
 package tests;
 
+import manager.TestNgListener;
 import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(TestNgListener.class)
 public class RegistrationTests extends TestBase{
 
 //    WebDriver wd;
