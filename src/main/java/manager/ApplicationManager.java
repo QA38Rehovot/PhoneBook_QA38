@@ -16,23 +16,29 @@ public class ApplicationManager {
 //    WebDriver wd;
     EventFiringWebDriver wd;
     HelperUser user;
+    HelperContact helperContact;
 
     public HelperUser getUser() {
         return user;
     }
 
-//    @BeforeSuite
+    public HelperContact getHelperContact() {
+        return helperContact;
+    }
+
+    //    @BeforeSuite
     public void init(){
 //        wd = new ChromeDriver();
         wd = new EventFiringWebDriver(new ChromeDriver());
         wd.register(new WebDriverListener());
         user = new HelperUser(wd);
+        helperContact = new HelperContact(wd);
         wd.navigate().to("https://telranedu.web.app/home");
         wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-//    @AfterSuite
+    @AfterSuite
     public void tearDown(){
-        wd.quit();
+//        wd.quit();
     }
 }
