@@ -51,7 +51,7 @@ public class RegistrationTests extends TestBase{
 //        Assert.assertTrue(isElementPresent(By.xpath("//button")));
 //    }
 
-    @Test
+    @Test(groups = {"smoke", "positive", "regress"})
     public void registrationPositive(){
         int i = (int)(System.currentTimeMillis()/1000)%3600;
 
@@ -66,7 +66,7 @@ public class RegistrationTests extends TestBase{
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//button")));
     }
 
-    @Test
+    @Test(groups = {"regress", "negative"})
     public void registrationNegativeWrongEmail(){
         int i = (int)(System.currentTimeMillis()/1000)%3600;
         String email = "abc" + i + "def.com", password = "$Abcdef12345";
@@ -83,7 +83,7 @@ public class RegistrationTests extends TestBase{
         app.getUser().submitRegistration();
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
 
     }

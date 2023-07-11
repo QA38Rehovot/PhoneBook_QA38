@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class RemoveContactTests extends TestBase{
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void precondition(){
         if(!app.getUser().isLogged()){
             String email = "abc@def.com", password = "$Abcdef12345";

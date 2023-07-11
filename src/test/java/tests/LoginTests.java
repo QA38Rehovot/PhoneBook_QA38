@@ -17,7 +17,7 @@ public class LoginTests extends TestBase{
 //        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 //    }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void precondition(){
         if(app.getUser().isLogged()){
             app.getUser().logout();
@@ -51,7 +51,7 @@ public class LoginTests extends TestBase{
 //
 //    }
 
-    @Test
+    @Test(groups = {"smoke","positive"})
     public void loginPositiveTestBase(){
         String email = "abc@def.com", password = "$Abcdef12345";
         app.getUser().openLoginForm();
@@ -99,7 +99,7 @@ public class LoginTests extends TestBase{
 //    }
 
 
-    @Test
+    @Test(groups = {"regress", "negative"})
     public void loginNegativeWrongEmail(){
         String email = "abcdef.com", password = "$Abcdef12345";
         app.getUser().openLoginForm();
