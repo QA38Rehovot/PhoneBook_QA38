@@ -1,16 +1,25 @@
 package tests;
 
+import manager.ProviderData;
 import manager.TestNgListener;
 import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 @Listeners(TestNgListener.class)
 public class RegistrationTests extends TestBase{
+
+    @BeforeMethod(alwaysRun = true)
+    public void precondition(){
+        if(app.getUser().isLogged()){
+            app.getUser().logout();
+        }
+    }
 
 //    WebDriver wd;
 //
@@ -59,6 +68,15 @@ public class RegistrationTests extends TestBase{
                 .withEmail("abc" + i + "@def.com")
                 .withPassword("$Abcdef12345")
                 ;
+        app.getUser().openLoginForm();
+        app.getUser().fillLoginForm(user);
+        app.getUser().submitRegistration();
+        app.getUser().pause(5000);
+        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//button")));
+    }
+    @Test(groups = {"smoke", "positive", "regress"}, dataProvider = "userDTO_CSV", dataProviderClass = ProviderData.class)
+    public void registrationPositiveCSV(User user){
+        logger.info("Registration starts with email: " + user.getEmail() + " and password: " + user.getPassword());
         app.getUser().openLoginForm();
         app.getUser().fillLoginForm(user);
         app.getUser().submitRegistration();
